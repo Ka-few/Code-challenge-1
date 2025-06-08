@@ -1,7 +1,7 @@
 function calculateChaiIngredients(perCupIngredients, numberOfCups) {
     //total ingredients needed
     const totalIngredients = {};
-    
+    //For loop to loop through the object keys i.e perCupIngredients
     for (const ingredient in perCupIngredients) {
         const {amount, unit} = perCupIngredients[ingredient];
         totalIngredients[ingredient] = {
@@ -30,6 +30,8 @@ if (!isNaN(cupsToMake) && cupsToMake > 0) {
     const totalNeeded = calculateChaiIngredients(ingredientsForOneCup, cupsToMake);
 
     console.log(`To make ${input} cups of Kenyan Chai, you will need: `)
+    
+    //Loop through an array of [key, value] pairs using Object.entries()
     for (const [ingredient, {amount, unit}] of Object.entries(totalNeeded)) {
         console.log(`${ingredient}: ${amount} ${unit}`);
     }
