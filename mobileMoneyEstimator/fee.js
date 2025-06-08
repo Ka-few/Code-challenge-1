@@ -1,3 +1,4 @@
+//Function to calculate the transaction fee based on the user input's amount
 function estimateTransactionFee() {
     //prompt the user for the amount to send
     const amountstr = prompt("Unatuma Ngapi? (KES):");
@@ -19,7 +20,8 @@ function estimateTransactionFee() {
     } else if (fee > 70) {
         fee = 70;
     }
-
+    
+    //calculate the total amount to be debited
     const totalAmount = amount + fee;
 
     //Display the transaction fee and total amount to be debited

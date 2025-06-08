@@ -10,6 +10,7 @@ const distance = parseFloat(userInputstr);
 
 //validating the user input
 if (isNaN(distance) || distance <= 0) {
+    //display the distance based on the user input 
     console.log("Please enter a valid number of kilometers!");
 } else{
     //calculate the fare and the total fare
