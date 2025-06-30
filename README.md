@@ -11,8 +11,8 @@ This is a Bodaboda ride fare calculator. In this program, there is a base fare t
 This program calculates the transaction fee charged on the amount inputed by the user. There is also a minimum of KES 10 and maximum of KES 70 fee charge rule that is applied to all amounts being transacted. The results of the total amount to be debited by the user are then displayed on the console. 
 
 ##Instructions for use
-Chai calulator [link here] (/Chai.html)
-Fare calclulator [link here] (Fare.html)
-Mobile money estimator [link here] (Fee.html)
+Chai calulator [link here](/Chai.html)
+Fare calclulator [link here](Fare.html)
+Mobile money estimator [link here](Fee.html)
 
 
