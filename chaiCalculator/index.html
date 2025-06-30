@@ -1,25 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chai Bora</title>
+  <meta charset="UTF-8">
+  <title>Chai Bora</title>
 </head>
-<style>
-    body {
-        background-color: greenyellow;
-        height: 100vh;
-        align-items: center;
-    }
-    h1 {
-        font-size: 50px;
-        font-weight: bolder;
-        padding: 40px;
-        text-align: center;
-    }
-</style>
 <body>
-    <h1>Chai Bora!</h1>
+  <button id="output">Calculate Chai Ingredients</button>
+  <div id="display"></div>
+
+  <script>
+    const displayContainer = document.getElementById('display');
+    const calculateButton = document.getElementById('output');
+
+    const ingredientsForOneCup = {
+      'Water': { amount: 200, unit: "ml" },
+      'Milk': { amount: 50, unit: "ml" },
+      'Tea leaves (Majani)': { amount: 1, unit: "tablespoon" },
+      'Sugar (Sukari)': { amount: 2, unit: "teaspoons" }
+    };
+
+    function calculateChaiIngredients(perCupIngredients, numberOfCups) {
+      const totalIngredients = {};
+      for (const ingredient in perCupIngredients) {
+        const { amount, unit } = perCupIngredients[ingredient];
+        totalIngredients[ingredient] = {
+          amount: amount * numberOfCups,
+          unit
+        };
+      }
+      return totalIngredients;
+    }
+
+    calculateButton.addEventListener('click', function() {
+      const input = prompt("Karibu! How many cups of Chai Bora would you like to make?");
+      const cupsToMake = parseInt(input, 10);
+
+      if (!isNaN(cupsToMake) && cupsToMake > 0) {
+        const totalNeeded = calculateChaiIngredients(ingredientsForOneCup, cupsToMake);
+
+        displayContainer.innerHTML = `<h3>To make ${cupsToMake} cups of Kenyan Chai, you will need:</h3>`;
+        const list = document.createElement('ul');
+
+        for (const [ingredient, { amount, unit }] of Object.entries(totalNeeded)) {
+          const li = document.createElement('li');
+          li.textContent = `${ingredient}: ${amount} ${unit}`;
+          list.appendChild(li);
+        }
+
+        displayContainer.appendChild(list);
+      } else {
+        displayContainer.textContent = "Karibu! Please enter a valid number of cups to make!";
+      }
+    });
+  </script>
 </body>
-<script src="./chai.js"></script>
 </html>

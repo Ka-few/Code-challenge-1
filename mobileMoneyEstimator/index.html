@@ -1,25 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Money Estimator</title>
-</head>
-<style>
+  <meta charset="UTF-8">
+  <title>Transaction Fee Estimator</title>
+  <style>
     body {
-        background-color: greenyellow;
-        height: 100vh;
-        align-items: center;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
     }
-    h1 {
-        font-size: 50px;
-        font-weight: bolder;
-        padding: 40px;
-        text-align: center;
+
+    #estimateFee {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-</style>
+
+    #estimateFee:hover {
+      background-color: #0056b3;
+    }
+
+    #display {
+      margin-top: 30px;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      text-align: left;
+    }
+
+    #display p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    #display strong {
+      font-size: 18px;
+      color: #007bff;
+    }
+  </style>
+</head>
 <body>
-    <h1>Transaction Fee Estimator!</h1>
+  <button id="estimateFee">Estimate Transaction Fee</button>
+  <div id="display"></div>
+
+  <script>
+    const button = document.getElementById('estimateFee');
+    const displayContainer = document.getElementById('display');
+
+    function estimateTransactionFee() {
+      const amountstr = prompt("Unatuma Ngapi? (KES):");
+      const amount = parseFloat(amountstr);
+
+      if (isNaN(amount) || amount <= 0) {
+        displayContainer.innerHTML = "<p style='color:red;'>Weka Pesa unataka kutuma!</p>";
+        return;
+      }
+
+      let fee = amount * 0.015;
+
+      if (fee < 10) {
+        fee = 10;
+      } else if (fee > 70) {
+        fee = 70;
+      }
+
+      const totalAmount = amount + fee;
+
+      displayContainer.innerHTML = `
+        <p>Sending: <strong>KES ${amount.toFixed(2)}</strong></p>
+        <p>Calculated Transaction Fee: <strong>KES ${fee.toFixed(2)}</strong></p>
+        <p>Total Amount to be Debited: <strong>KES ${totalAmount.toFixed(2)}</strong></p>
+        <p style="font-style: italic;">Send Money Securely!</p>
+      `;
+    }
+
+    button.addEventListener('click', estimateTransactionFee);
+  </script>
 </body>
-<script src="./fee.js"></script>
 </html>

@@ -1,5 +1,7 @@
+let displayContainer = document.getElementById('display');
+let calculateButton = document.getElementById('output');
 //function to calculate the ingredients required to make a cup of chai
-function calculateChaiIngredients(perCupIngredients, numberOfCups) {
+calculateButton = addEventListener('click', function calculateChaiIngredients(perCupIngredients, numberOfCups) {
     //total ingredients needed
     const totalIngredients = {};
     //For loop to loop through the object keys i.e perCupIngredients
@@ -12,9 +14,7 @@ function calculateChaiIngredients(perCupIngredients, numberOfCups) {
 
     return totalIngredients;
 
-}
-
-//Ingredients needed for one cup
+})
 const ingredientsForOneCup = {
     'Water': {amount: 200, unit: "ml"},
     'Milk': {amount: 50, unit: "ml"},
@@ -44,3 +44,10 @@ if (!isNaN(cupsToMake) && cupsToMake > 0) {
 } else {
     console.log("Karibu! Please enter a valid number of cups to make!");
 }
+
+
+//Ingredients needed for one cup
+
+calculateButton.addEventListener('click', 
+    displayContainer.textContent = `${ingredient}: ${amount} ${unit}`
+)

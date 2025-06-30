@@ -1,25 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fare estimator</title>
-</head>
-<style>
+  <meta charset="UTF-8">
+  <title>Pikipiki Fare Calculator</title>
+  <style>
     body {
-        background-color: greenyellow;
-        height: 100vh;
-        align-items: center;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
     }
-    h1 {
-        font-size: 50px;
-        font-weight: bolder;
-        padding: 40px;
-        text-align: center;
+
+    #calculateFare {
+      background-color: #e60000;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-</style>
+
+    #calculateFare:hover {
+      background-color: #cc0000;
+    }
+
+    #display {
+      margin-top: 30px;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      text-align: left;
+    }
+
+    #display p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    #display strong {
+      font-size: 18px;
+      color: #e60000;
+    }
+  </style>
+</head>
 <body>
-    <h1>Boda Boda Fare Estimator!</h1>
+    <h1>Boda Boda fare calculator</h1>
+  <button id="calculateFare">Calculate Fare</button>
+  <div id="display"></div>
+
+  <script>
+    const baseFare = 50;
+    const perKmCharge = 15;
+    const displayContainer = document.getElementById('display');
+    const button = document.getElementById('calculateFare');
+
+    button.addEventListener('click', function() {
+      const usrInput = prompt("Unafika wapi mkubwa? Kilometer ngapi?");
+      const distance = parseFloat(usrInput);
+
+      if (isNaN(distance) || distance <= 0) {
+        displayContainer.innerHTML = "<p style='color:red;'>Please enter a valid distance</p>";
+      } else {
+        const fare = distance * perKmCharge;
+        const totalFare = baseFare + fare;
+
+        displayContainer.innerHTML = `
+          <p><strong>Uko kwote?</strong> Io ni ${distance} km:</p>
+          <p>Ukikalia Pikipiki: <strong>KES ${baseFare}</strong></p>
+          <p>Mpaka Uko: <strong>KES ${fare}</strong></p>
+          <p>Total: <strong>KES ${totalFare}</strong></p>
+          <p style="font-style: italic;">Panda Pikipiki!</p>
+        `;
+      }
+    });
+  </script>
 </body>
-<script src="./fare.js"></script>
 </html>

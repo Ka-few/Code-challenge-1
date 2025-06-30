@@ -2,18 +2,15 @@
 const baseFare = 50;
 const perKmCharge = 15;
 
-//prompt the user for an input
-const userInputstr = prompt("Unafika wapi Mkubwa? Kilometer ngapi?");
+//prompt the user to enter the distance
+const usrInput = prompt("Unafika wapi mkubwa? Kilometer ngapi?" )
 
-//convert user input to a number
-const distance = parseFloat(userInputstr);
-
-//validating the user input
-if (isNaN(distance) || distance <= 0) {
-    //display the distance based on the user input 
-    console.log("Please enter a valid number of kilometers!");
-} else{
-    //calculate the fare and the total fare
+//Validate user input
+if (isNaN(usrInput) || usrInput <=0 ) {
+    console.log("please enter a valid distance")
+} 
+else {
+        //calculate the fare and the total fare
     const fare = distance * perKmCharge;
     const totalFare = baseFare + fare;
 
@@ -25,3 +22,4 @@ if (isNaN(distance) || distance <= 0) {
         
     Panda Pikipiki!`)
 }
+
